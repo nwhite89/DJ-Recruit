@@ -19,6 +19,28 @@
                     <?php echo $djs[0]->town; ?> <br />
                     <?php echo $djs[0]->postcode; ?>
             </p>
+            <p>
+                <span class="bold">Equipment <a class="btn btn-mini btn-primary" href="<?php echo base_url(); ?>/equipment/add/<?php echo $djs[0]->id; ?>">Add</a></span><br />
+                <table id="equipment-table" class="table list table-condensed table-hover" width="100%;">
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <?php 
+                    foreach ($equipment as $key => $value) {
+                        echo '<tr>';
+                            echo '<td>' . $value->equipment . '</td>';
+                            echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="#">Delete</a></td>';
+                        echo '</tr>';
+                    }
+                ?>
+                </tbody>
+            </table>
+            </p>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-class add_dj extends CI_Model {
+class add_equipment extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -17,7 +17,7 @@ class add_dj extends CI_Model {
     */
 
     function SaveForm($form_data) {
-        $this->db->insert('dj_contacts', $form_data);
+        $this->db->insert('dj_equipment', $form_data);
 
         if ($this->db->affected_rows() == '1') {
             return TRUE;
@@ -26,15 +26,5 @@ class add_dj extends CI_Model {
         return FALSE;
     }
 
-    function EditSaveForm($form_data) {
-        $this->db->where('id', $form_data['id']);
-        $this->db->update('dj_contacts', $form_data); 
-
-        if ($this->db->affected_rows() == '1') {
-            return TRUE;
-        }
-
-        return FALSE;
-    }
 }
 ?>

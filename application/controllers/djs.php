@@ -51,8 +51,15 @@ class djs extends CI_Controller {
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
 
+        $this->db->order_by('equipment', 'DESC');
+        $this->db->where('contact_id', $id);
+
+        $query = $this->db->get('dj_equipment');
+        $equipment = $query->result();
+
         $data = array(
-            'djs' => $djs
+            'djs' => $djs,
+            'equipment' => $equipment
         );
 
         $this->load->view('dj_name', $data);
@@ -131,7 +138,6 @@ class djs extends CI_Controller {
                 'town' => set_value('town'),
                 'postcode' => set_value('postcode')
             );
-                    
         
             if ($this->add_dj->EditSaveForm($form_data) == TRUE) {
                 redirect('djs/success');

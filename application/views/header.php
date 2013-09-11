@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="http://sandbox.td/dj-recruit/djs/">DJ Recruit</a>
+          <a class="brand" href="<?php echo base_url(); ?>">DJ Recruit</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="<?php echo base_url(); ?>">Home</a></li>

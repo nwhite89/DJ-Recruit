@@ -25,7 +25,7 @@
 							echo '<td>' . $value->town . '</td>';
 							echo '<td><a href="'.base_url().'djs/edit/' . $value->id . '" class="btn btn-warning">Edit</a> '.
 								'<a class="btn btn-primary" href="'.base_url().'djs/views/' . $value->id .'">View</a> '.
-								'<a class="btn btn-danger" href="'.base_url().'djs/delete/' . $value->id .'">Delete</a>'.
+								'<a class="btn btn-danger" href="'.base_url().'djs/remove/' . $value->id .'">Delete</a>'.
 								'</td>';
 
 						echo '</tr>';

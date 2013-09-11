@@ -50,6 +50,11 @@ class Equipment extends CI_Controller {
 
     }
 
+    public function remove($id = '') {
+        $this->add_equipment->removeUser($id);
+        redirect('djs/success');
+    }
+
 }
 
 /* End of file equipment.php */

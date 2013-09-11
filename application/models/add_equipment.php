@@ -26,5 +26,10 @@ class add_equipment extends CI_Model {
         return FALSE;
     }
 
+    function removeUser($id) {        
+        $this->db->where('id', $id);
+        $this->db->delete('dj_equipment');
+    }
+
 }
 ?>

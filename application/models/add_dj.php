@@ -36,5 +36,13 @@ class add_dj extends CI_Model {
 
         return FALSE;
     }
+
+    function removeUser($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('dj_contacts');
+        
+        $this->db->where('contact_id', $id);
+        $this->db->delete('dj_equipment');
+    }
 }
 ?>

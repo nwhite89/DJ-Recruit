@@ -149,9 +149,14 @@ class djs extends CI_Controller {
         }
     }
 
+    public function remove($id = '') {
+        $this->add_dj->removeUser($id);
+        redirect('djs/success');
+    }
+
     function success() {
         $this->load->view('header');
-        echo 'Success';
+        echo '<div class="container"><div class="row"><div class="span12"><h1>Success</h1></div></div></div>';
         $this->load->view('footer');
     }
 }

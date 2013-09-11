@@ -26,8 +26,8 @@ class add_dj extends CI_Model {
         return FALSE;
     }
 
-    function EditSaveForm($form_data) {
-        $this->db->where('id', $form_data['id']);
+    function EditSaveForm($form_data, $id) {
+        $this->db->where('id', $id);
         $this->db->update('dj_contacts', $form_data); 
 
         if ($this->db->affected_rows() == '1') {

@@ -139,7 +139,7 @@ class djs extends CI_Controller {
                 'postcode' => set_value('postcode')
             );
         
-            if ($this->add_dj->EditSaveForm($form_data) == TRUE) {
+            if ($this->add_dj->EditSaveForm($form_data, $id) == TRUE) {
                 redirect('djs/success');
             } else {
                 $this->load->view('header');
@@ -156,7 +156,7 @@ class djs extends CI_Controller {
 
     function success() {
         $this->load->view('header');
-        echo '<div class="container"><div class="row"><div class="span12"><h1>Success</h1></div></div></div>';
+        $this->load->view('success');
         $this->load->view('footer');
     }
 }

@@ -5,6 +5,7 @@
     <script src="http://sandbox.td/dj-recruit/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="http://sandbox.td/dj-recruit/assets/bootstrap/js/jquery.dataTables.min.js"></script>
     <script src="http://sandbox.td/dj-recruit/assets/bootstrap/js/jquery.dataTables.pagination.js"></script>
+    <script src="http://sandbox.td/dj-recruit/assets/bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="http://sandbox.td/dj-recruit/assets/js/djs.js"></script>
 
   </body>

@@ -18,8 +18,18 @@
             <div class="control-group<?php echo (form_error('email')?' error':'')?>">
                 <label class="control-label" for="email">E-mail</label>
                 <div class="controls">
-                    <input id="email" type="text" name="email"  value="<?php echo set_value('email'); ?>"  />
+                    <input id="email" type="email" name="email"  value="<?php echo set_value('email'); ?>"  />
                     <?php echo form_error('email','<span class="help-inline error">', '</span>'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="mobile">Date of Birth</label>
+                <?php echo form_error('dob'); ?>
+                <div class="controls">
+                    <div class="input-append date" id="dp" data-date="" data-date-format="dd-mm-yyyy">
+                        <input type="text" value="<?php echo set_value('dob'); ?>" class="span2 datePicker" name="dob" id="dob" value="" data-date-format="dd-mm-yyyy" id="dp2">
+                    </div>
                 </div>
             </div>
 

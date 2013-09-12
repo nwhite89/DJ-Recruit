@@ -81,6 +81,7 @@ class djs extends CI_Controller {
         $this->form_validation->set_rules('address_line2', 'Address Line 2', '');
         $this->form_validation->set_rules('town', 'Town', '');
         $this->form_validation->set_rules('postcode', 'Postcode', '');
+        $this->form_validation->set_rules('dob', 'Dob', '');
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     
         if ($this->form_validation->run() == FALSE) {
@@ -89,7 +90,7 @@ class djs extends CI_Controller {
             $this->load->view('footer');
         }
         else {
-            
+            $dobDate = strtotime(set_value('dob'));
             $form_data = array(
                 'name' => set_value('name'),
                 'email' => set_value('email'),
@@ -97,7 +98,8 @@ class djs extends CI_Controller {
                 'address_line1' => set_value('address_line1'),
                 'address_line2' => set_value('address_line2'),
                 'town' => set_value('town'),
-                'postcode' => set_value('postcode')
+                'postcode' => set_value('postcode'),
+                'dob' => $dobDate
             );
                     
         

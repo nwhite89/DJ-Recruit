@@ -23,6 +23,23 @@
                 </div>
             </div>
 
+             <div class="control-group">
+                <label class="control-label" for="mobile">Date of Birth</label>
+                <?php echo form_error('dob'); ?>
+                <div class="controls">
+                    <div class="input-append date" id="dp" data-date="" data-date-format="dd-mm-yyyy">
+                        <?php
+                            if ($djs[0]->dob != null || $djs[0]->dob != '') { 
+                                $dob = date("d-m-Y", $djs[0]->dob);
+                            } else {
+                                $dob = set_value('dob');
+                            }
+                        ?>
+                        <input value="<?php echo $dob; ?>" type="text" class="span2 datePicker" name="dob" id="dob" value="" data-date-format="dd-mm-yyyy" id="dp2">
+                    </div>
+                </div>
+            </div>
+
             <div class="control-group">
                 <label class="control-label" for="mobile">Mobile</label>
                 <?php echo form_error('mobile'); ?>

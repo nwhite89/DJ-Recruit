@@ -5,6 +5,11 @@
             <h4><?php echo $djs[0]->name; ?></h4>
             <p>
                 <span class="bold">Date of Birth: </span>
+                <?php 
+                    if ($djs[0]->dob != null || $djs[0]->dob != '') { 
+                        echo date("d-m-Y", $djs[0]->dob);
+                    }
+                ?>
             </p>
             <p>
                 <span class="bold">Mobile Number: </span><?php echo $djs[0]->mobile; ?>
@@ -45,7 +50,7 @@
                             foreach ($equipment as $key => $value) {
                                 echo '<tr>';
                                     echo '<td>' . $value->equipment . '</td>';
-                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
                                 echo '</tr>';
                             }
                         ?>
@@ -67,7 +72,7 @@
                             foreach ($music as $key => $value) {
                                 echo '<tr>';
                                     echo '<td>' . $value->music . '</td>';
-                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="'.base_url().'music/remove/'.$value->id.'">Delete</a></td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'music/remove/'.$value->id.'">Delete</a></td>';
                                 echo '</tr>';
                             }
                         ?>

@@ -9,4 +9,17 @@ $(function() {
     };
     $('#djs-table').dataTable(dataTableVars);
 
+    $('.dj-delete-check').live('click', function(e) {
+        e.stopPropagation();
+        var confirmDelete;
+
+        confirmDelete = confirm('Are you sure you wish to delete?');
+        if (confirmDelete === true) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    $('.datePicker').datepicker();
 });

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Equipment extends CI_Controller {
+class Music extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class Equipment extends CI_Controller {
         $this->load->database();
         $this->load->helper('form');
         $this->load->helper('url');
-        $this->load->model('add_equipment');
+        $this->load->model('add_music');
     } 
 
     public function add($id = null) {
@@ -21,27 +21,28 @@ class Equipment extends CI_Controller {
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
 
+
         $data = array(
             'djId' => $id,
             'djs' => $djs
         );
 
-        $this->form_validation->set_rules('equipment', 'Equipment', 'required');
+        $this->form_validation->set_rules('music', 'Music', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header');
-            $this->load->view('equipment_add', $data);
+            $this->load->view('music_add', $data);
             $this->load->view('footer');
         } else {
             
             $form_data = array(
                 'contact_id' => $id,
-                'equipment' => set_value('equipment'),
+                'music' => set_value('music')
             );
                     
         
-            if ($this->add_equipment->SaveForm($form_data) == TRUE) {
+            if ($this->add_music->SaveForm($form_data) == TRUE) {
                 redirect('djs/success');
             } else {
                 echo 'An error occurred saving your information. Please try again later';
@@ -52,7 +53,7 @@ class Equipment extends CI_Controller {
 
     public function remove($id = '') {
         if ($id != '') {
-            $this->add_equipment->removeEquipment($id);
+            $this->add_music->removeMusic($id);
         }
         redirect('djs/success');
     }

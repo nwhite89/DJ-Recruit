@@ -1,6 +1,6 @@
 <?php
 
-class add_equipment extends CI_Model {
+class add_music extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -17,7 +17,7 @@ class add_equipment extends CI_Model {
     */
 
     function SaveForm($form_data) {
-        $this->db->insert('dj_equipment', $form_data);
+        $this->db->insert('dj_music', $form_data);
 
         if ($this->db->affected_rows() == '1') {
             return TRUE;
@@ -26,9 +26,9 @@ class add_equipment extends CI_Model {
         return FALSE;
     }
 
-    function removeEquipment($id) {        
+    function removeMusic($id) {        
         $this->db->where('id', $id);
-        $this->db->delete('dj_equipment');
+        $this->db->delete('dj_music');
     }
 
 }

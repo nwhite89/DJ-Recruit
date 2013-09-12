@@ -19,28 +19,61 @@
                     <?php echo $djs[0]->town; ?> <br />
                     <?php echo $djs[0]->postcode; ?>
             </p>
-            <p>
-                <span class="bold">Equipment <a class="btn btn-mini btn-primary" href="<?php echo base_url(); ?>equipment/add/<?php echo $djs[0]->id; ?>">Add</a></span><br />
-                <table id="equipment-table" class="table list table-condensed table-hover" width="100%;">
-                <thead>
-                    <tr>
-                        <th>Equipment</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+        </div>
+        <div class="span12">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#equipment" data-toggle="tab">Equipment</a>
+                </li>
+                <li>
+                    <a href="#music" data-toggle="tab">Music Specialiy</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="equipment">
+                    <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>equipment/add/<?php echo $djs[0]->id; ?>">Add</a><br />
+                    <table id="equipment-table" class="table list table-condensed table-hover" width="100%;">
+                        <thead>
+                            <tr>
+                                <th>Equipment</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                <?php 
-                    foreach ($equipment as $key => $value) {
-                        echo '<tr>';
-                            echo '<td>' . $value->equipment . '</td>';
-                            echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
-                        echo '</tr>';
-                    }
-                ?>
-                </tbody>
-            </table>
-            </p>
+                        <?php 
+                            foreach ($equipment as $key => $value) {
+                                echo '<tr>';
+                                    echo '<td>' . $value->equipment . '</td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
+                                echo '</tr>';
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="music">
+                    <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>music/add/<?php echo $djs[0]->id; ?>">Add</a><br />
+                    <table id="music-table" class="table list table-condensed table-hover" width="100%;">
+                        <thead>
+                            <tr>
+                                <th>Music</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php 
+                            foreach ($music as $key => $value) {
+                                echo '<tr>';
+                                    echo '<td>' . $value->music . '</td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini" href="'.base_url().'music/remove/'.$value->id.'">Delete</a></td>';
+                                echo '</tr>';
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
 </div>

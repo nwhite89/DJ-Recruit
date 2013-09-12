@@ -57,9 +57,16 @@ class djs extends CI_Controller {
         $query = $this->db->get('dj_equipment');
         $equipment = $query->result();
 
+        $this->db->order_by('music', 'DESC');
+        $this->db->where('contact_id', $id);
+
+        $query = $this->db->get('dj_music');
+        $music = $query->result();
+
         $data = array(
             'djs' => $djs,
-            'equipment' => $equipment
+            'equipment' => $equipment,
+            'music' => $music
         );
 
         $this->load->view('dj_name', $data);

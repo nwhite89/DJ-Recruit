@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DJ Recruit</title>
+    <title>TC Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="<?php echo base_url(); ?>">DJ Recruit</a>
+          <a class="brand" href="<?php echo base_url(); ?>">TC Events</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="<?php echo base_url(); ?>">Home</a></li>

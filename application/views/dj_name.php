@@ -1,30 +1,43 @@
 <div class="container">
-    <div class="row">
-        <div class="span12">
-            <h2>DJs</h2>
-            <h4><?php echo $djs[0]->name; ?></h4>
-            <p>
-                <span class="bold">Date of Birth: </span>
+    <div class="hero-unit">
+        <h2><?php echo $djs[0]->name; ?></h2>
+        <dl class="dl-horizontal">
+            <dt>Date of Birth:</dt>
+            <dd>
                 <?php 
                     if ($djs[0]->dob != null || $djs[0]->dob != '') { 
                         echo date("d-m-Y", $djs[0]->dob);
+                    } else {
+                        echo '&nbsp;';
                     }
                 ?>
-            </p>
-            <p>
-                <span class="bold">Mobile Number: </span><?php echo $djs[0]->mobile; ?>
-            </p>
-            <p>
-                <span class="bold">E-Mail Address: </span><?php echo $djs[0]->email; ?>
-            </p>
-            <p>
-                <span class="bold">Address: </span><br />
-                    <?php echo $djs[0]->address_line1; ?> <br />
-                    <?php echo $djs[0]->address_line2; ?> <br />
-                    <?php echo $djs[0]->town; ?> <br />
-                    <?php echo $djs[0]->postcode; ?>
-            </p>
-        </div>
+            </dd>
+            <dt>
+                Mobile Number:
+            </dt>
+            <dd>
+                <?php echo $djs[0]->mobile; ?>
+            </dd>
+            <dt>
+                E-Mail Address:
+            </dt>
+            <dd>
+                <?php echo $djs[0]->email; ?>
+            </dd>
+            <dt>
+                Address:
+            </dt>
+            <dd>
+                <address>
+                        <strong><?php echo $djs[0]->address_line1; ?></strong> <br />
+                        <?php echo $djs[0]->address_line2; ?> <br />
+                        <?php echo $djs[0]->town; ?> <br />
+                        <?php echo $djs[0]->postcode; ?>
+                </address>
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
         <div class="span12">
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -37,7 +50,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="equipment">
                     <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>equipment/add/<?php echo $djs[0]->id; ?>">Add</a><br />
-                    <table id="equipment-table" class="table list table-condensed table-hover" width="100%;">
+                    <table id="equipment-table" class="table list table-condensed table-hover table-striped" width="100%;">
                         <thead>
                             <tr>
                                 <th>Equipment</th>
@@ -59,7 +72,7 @@
                 </div>
                 <div class="tab-pane" id="music">
                     <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>music/add/<?php echo $djs[0]->id; ?>">Add</a><br />
-                    <table id="music-table" class="table list table-condensed table-hover" width="100%;">
+                    <table id="music-table" class="table list table-condensed table-hover table-striped" width="100%;">
                         <thead>
                             <tr>
                                 <th>Music</th>

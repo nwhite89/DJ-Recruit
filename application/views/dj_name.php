@@ -62,7 +62,7 @@
                         <?php 
                             foreach ($equipment as $key => $value) {
                                 echo '<tr>';
-                                    echo '<td>' . $value->equipment . '</td>';
+                                    echo '<td>' . $value->name . '</td>';
                                     echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
                                 echo '</tr>';
                             }

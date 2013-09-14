@@ -40,6 +40,7 @@
               <li><a href="<?php echo base_url(); ?>">Home</a></li>
               <li><a href="<?php echo base_url(); ?>djs/add">Add new DJ</a></li>
               <li><a href="<?php echo base_url(); ?>equipment/add">Add to Equipment list</a></li>
+              <li><a href="<?php echo base_url(); ?>music/add">Add to Music list</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

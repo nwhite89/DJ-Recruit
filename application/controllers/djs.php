@@ -51,9 +51,6 @@ class djs extends CI_Controller {
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
 
-        $this->db->order_by('equipment', 'DESC');
-        $this->db->where('contact_id', $id);
-
         $query = $this->db->query('SELECT  dje.id, dje.name 
             FROM dj_contact_equipment djce
             INNER JOIN dj_equipment dje
@@ -68,11 +65,14 @@ class djs extends CI_Controller {
             WHERE djcm.contact_id = '. $id);
 
         $music = $query->result();
+        $this->load->model('add_equipment');
+        $equipmentList = $this->add_equipment->listEquipment();
 
         $data = array(
             'djs' => $djs,
             'equipment' => $equipment,
-            'music' => $music
+            'music' => $music,
+            'equipmentList' => $equipmentList
         );
 
         $this->load->view('dj_name', $data);

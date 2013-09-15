@@ -22,4 +22,36 @@ $(function() {
     });
 
     $('.datePicker').datepicker();
+
+    $('#dj-equipment').on('change, keyup', function(e) {
+        var value = $(this).val(),
+            sources = equipmentList,
+            modal = $(this).closest('.modal');
+
+
+        if ($.inArray(value, sources) == -1) {
+            $('.modal-submit-btn', modal).addClass('disabled');
+        } else {
+            $('.modal-submit-btn', modal).removeClass('disabled');
+        }
+    });
+
+    $('.modal form').on('submit', function(e) {
+        var modalSubmitBtn = $(this)
+            .closest('.modal').find('.modal-submit-btn');
+        if (modalSubmitBtn.hasClass('disabled')) {
+            e.preventDefault();
+            return false;
+        } else {
+            return true;
+        }
+    });
+
+    $('.modal-submit-btn').live('click', function(e) {
+        e.stopPropagation();
+        if ($(this).hasClass('disabled')) {
+            return false;
+        }
+        $('form', modal).submit();
+    });
 });

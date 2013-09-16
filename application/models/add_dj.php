@@ -37,6 +37,16 @@ class add_dj extends CI_Model {
         return FALSE;
     }
 
+    public function addDjEquipment($form_data) {
+        $this->db->insert('dj_contact_equipment', $form_data);
+
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
     function removeUser($id) {
         $this->db->where('id', $id);
         $this->db->delete('dj_contacts');

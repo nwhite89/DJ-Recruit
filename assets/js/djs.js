@@ -23,7 +23,7 @@ $(function() {
 
     $('.datePicker').datepicker();
 
-    $('#dj-equipment').on('change, keyup', function(e) {
+    $('#dj-equipment').on('change, keyup, blur', function(e) {
         var value = $(this).val(),
             sources = equipmentList,
             modal = $(this).closest('.modal');
@@ -52,6 +52,7 @@ $(function() {
         if ($(this).hasClass('disabled')) {
             return false;
         }
+        var modal = $(this).closest('.modal');
         $('form', modal).submit();
     });
 });

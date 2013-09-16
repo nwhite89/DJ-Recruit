@@ -97,13 +97,23 @@
     </div>
 </div>
 <?php 
-    $typeahead = array();
+    $equipmentTypeahead = array();
     $equipmentListArr = array();
     foreach ($equipmentList as $key => $value) {
-        $typeahead[] = '"'.$value->name.'"';
-        $equipmentListArr[] = $value->name; 
+        $equipmentTypeahead[] = '"'.$value->name.'"';
+        $equipmentListArr[] = $value->name;
     }
-    echo '<script> var equipmentList = ' . json_encode($equipmentListArr) . '</script>';
+
+    $musicTypeahead = array();
+    $musicListArr = array();
+    foreach ($musicList as $key => $value) {
+        $musicTypeahead[] = '"'.$value->music.'"';
+        $musicListArr[] = $value->music;
+    }
+    echo '<script>';
+    echo 'var equipmentList = ' . json_encode($equipmentListArr) . ';' ;
+    echo 'var musicList = ' . json_encode($musicListArr) . ';' ;
+    echo '</script>';
 ?>
 <div class="modal hide fade" id="equipment-modal">
     <div class="modal-header">
@@ -111,9 +121,27 @@
         <h3>Add Equipment</h3>
     </div>
     <div class="modal-body">
-        <form action="<?php echo base_url(); ?>dj/addEquipment" type="post">
+        <form action="<?php echo base_url(); ?>djs/addEquipment" method="POST">
             <p>Search through current equipment list</p>
-            <input type="text" name="dj-equipment" id="dj-equipment" data-items="4" data-source='[<?php echo implode(', ', $typeahead); ?>]' placeholder="Equipment" data-provide="typeahead" autocomplete="off">
+            <input type="text" name="dj-equipment" id="dj-equipment" data-items="4" data-source='[<?php echo implode(', ', $equipmentTypeahead); ?>]' placeholder="Equipment" data-provide="typeahead" autocomplete="off">
+            <span class="error hide"></span>
+            <input type="hidden" name="dj-id" id="dj" value="<?php echo $djs[0]->id; ?>">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a href="#" class="btn btn-primary modal-submit-btn disabled">Submit</a>
+    </div>
+</div>
+<div class="modal hide fade" id="music-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Add Equipment</h3>
+    </div>
+    <div class="modal-body">
+        <form action="<?php echo base_url(); ?>djs/addEquipment" method="POST">
+            <p>Search through current music list</p>
+            <input type="text" name="dj-music" id="dj-music" data-items="4" data-source='[<?php echo implode(', ', $musicTypeahead); ?>]' placeholder="Music" data-provide="typeahead" autocomplete="off">
             <span class="error hide"></span>
             <input type="hidden" name="dj-id" id="dj" value="<?php echo $djs[0]->id; ?>">
         </form>

@@ -67,12 +67,16 @@ class djs extends CI_Controller {
         $music = $query->result();
         $this->load->model('add_equipment');
         $equipmentList = $this->add_equipment->listEquipment();
+        
+        $this->load->model('add_music');
+        $musicList = $this->add_music->listMusic();
 
         $data = array(
             'djs' => $djs,
             'equipment' => $equipment,
             'music' => $music,
-            'equipmentList' => $equipmentList
+            'equipmentList' => $equipmentList,
+            'musicList' => $musicList
         );
 
         $this->load->view('dj_name', $data);
@@ -167,6 +171,44 @@ class djs extends CI_Controller {
     public function remove($id = '') {
         $this->add_dj->removeUser($id);
         redirect('djs/success');
+    }
+
+    public function addEquipment() {
+        $this->db->limit(1);
+        $this->db->where('name', $this->input->post('dj-equipment'));
+        $query = $this->db->get('dj_equipment');
+        $equipment = $query->result();
+
+        $form_data = array(
+            'contact_id' => $this->input->post('dj-id'),
+            'equipment_id' => $equipment[0]->id
+        );
+                    
+        
+        if ($this->add_dj->addDjEquipment($form_data) == TRUE) {
+            redirect('djs/success');
+        } else {
+            echo 'An error occurred saving your information. Please try again later';
+        }
+    }
+
+    public function addMusic() {
+        $this->db->limit(1);
+        $this->db->where('name', $this->input->post('dj-music'));
+        $query = $this->db->get('dj_music');
+        $music = $query->result();
+
+        $form_data = array(
+            'contact_id' => $this->input->post('dj-id'),
+            'music_id' => $music[0]->id
+        );
+                    
+        
+        if ($this->add_dj->addDjMusic($form_data) == TRUE) {
+            redirect('djs/success');
+        } else {
+            echo 'An error occurred saving your information. Please try again later';
+        }
     }
 
     function success() {

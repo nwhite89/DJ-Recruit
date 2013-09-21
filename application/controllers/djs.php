@@ -35,6 +35,10 @@ class djs extends CI_Controller {
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
 
+        foreach ($djs as $key => $value) {
+            $djs[$key]->age = $this->add_dj->getDJAge($value->dob);
+        }
+
         $data = array(
             'djs' => $djs
         );
@@ -50,6 +54,10 @@ class djs extends CI_Controller {
 
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
+
+        foreach ($djs as $key => $value) {
+            $djs[$key]->age = $this->add_dj->getDJAge($value->dob);
+        }
 
         $query = $this->db->query('SELECT  dje.id, dje.name 
             FROM dj_contact_equipment djce
@@ -91,7 +99,7 @@ class djs extends CI_Controller {
         $this->form_validation->set_rules('address_line2', 'Address Line 2', '');
         $this->form_validation->set_rules('town', 'Town', '');
         $this->form_validation->set_rules('postcode', 'Postcode', '');
-        $this->form_validation->set_rules('dob', 'Dob', '');
+        $this->form_validation->set_rules('dob', 'Date of Birth', '');
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     
         if ($this->form_validation->run() == FALSE) {
@@ -100,7 +108,7 @@ class djs extends CI_Controller {
             $this->load->view('footer');
         }
         else {
-            $dobDate = strtotime(set_value('dob'));
+            $dobDate = (set_value('dob') != '') ? strtotime(set_value('dob')) : null;
             $form_data = array(
                 'name' => set_value('name'),
                 'email' => set_value('email'),
@@ -139,6 +147,7 @@ class djs extends CI_Controller {
         $this->form_validation->set_rules('address_line2', 'Address Line 2', '');
         $this->form_validation->set_rules('town', 'Town', '');
         $this->form_validation->set_rules('postcode', 'Postcode', '');
+        $this->form_validation->set_rules('dob', 'Date of Birth', '');
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     
         if ($this->form_validation->run() == FALSE) {
@@ -147,6 +156,7 @@ class djs extends CI_Controller {
             $this->load->view('footer');
         }
         else {
+            $dobDate = (set_value('dob') != '') ? strtotime(set_value('dob')) : null;
             $form_data = array(
                 'id' => $id,
                 'name' => set_value('name'),
@@ -155,7 +165,8 @@ class djs extends CI_Controller {
                 'address_line1' => set_value('address_line1'),
                 'address_line2' => set_value('address_line2'),
                 'town' => set_value('town'),
-                'postcode' => set_value('postcode')
+                'postcode' => set_value('postcode'),
+                'dob' => $dobDate
             );
         
             if ($this->add_dj->EditSaveForm($form_data, $id) == TRUE) {

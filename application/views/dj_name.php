@@ -2,15 +2,9 @@
     <div class="hero-unit">
         <h2><?php echo $djs[0]->name; ?></h2>
         <dl class="dl-horizontal">
-            <dt>Date of Birth:</dt>
+            <dt>Age:</dt>
             <dd>
-                <?php 
-                    if ($djs[0]->dob != null || $djs[0]->dob != '') { 
-                        echo date("d-m-Y", $djs[0]->dob);
-                    } else {
-                        echo '&nbsp;';
-                    }
-                ?>
+                <?php echo $djs[0]->age; ?>
             </dd>
             <dt>
                 Mobile Number:

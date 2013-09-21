@@ -57,6 +57,27 @@ class add_dj extends CI_Model {
         return FALSE;
     }
 
+    public function getDJAge($dob = 0) {
+        if ($dob == 0 || $dob == '' || $dob == null) {
+            return '';
+        } else {
+            $now = time();
+
+            $yearDiff   = date("Y", $now) - date("Y", $dob);
+            $monthDiff  = date("m", $now) - date("m", $dob);
+            $dayDiff    = date("d", $now) - date("d", $dob);
+
+            if ($monthDiff < 0) {
+                $yearDiff--;
+            } elseif (($monthDiff == 0) && ($dayDiff < 0)) {
+                $yearDiff--;
+            }
+
+            $result = intval($yearDiff);
+            return $result;
+        }
+    }
+
     function removeUser($id) {
         $this->db->where('id', $id);
         $this->db->delete('dj_contacts');

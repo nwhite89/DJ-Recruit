@@ -9,36 +9,20 @@ class Music extends CI_Controller {
         $this->load->helper('form');
         $this->load->helper('url');
         $this->load->model('add_music');
-    } 
+    }
 
-    public function add($id = null) {
-        if ($id == null) {
-            redirect('djs');
-        }
-
-        $this->db->limit(1);
-        $this->db->where('id', $id);
-        $query = $this->db->get('dj_contacts');
-        $djs = $query->result();
-
-
-        $data = array(
-            'djId' => $id,
-            'djs' => $djs
-        );
-
-        $this->form_validation->set_rules('music', 'Music', 'required');
+    public function add() {
+        $this->form_validation->set_rules('music', 'Music', 'required|is_unique[dj_music.music]');
 
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header');
-            $this->load->view('music_add', $data);
+            $this->load->view('music_add');
             $this->load->view('footer');
         } else {
             
             $form_data = array(
-                'contact_id' => $id,
-                'music' => set_value('music')
+                'music' => set_value('music'),
             );
                     
         

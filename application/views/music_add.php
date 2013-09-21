@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h2>Add music specialties to <?php echo $djs[0]->name; ?></h2>
+            <h2>Add music specialties types</h2>
             <?php // Change the css classes to suit your needs    
 
             $attributes = array('class' => 'form-horizontal', 'id' => '');
-            echo form_open('music/add/' . $djId, $attributes); ?>
+            echo form_open('music/add', $attributes); ?>
 
             <div class="control-group<?php echo (form_error('music')?' error':'')?>">
                 <label class="control-label" for="music">Music <span class="required">*</span></label>

@@ -51,22 +51,32 @@ class djs extends CI_Controller {
         $query = $this->db->get('dj_contacts');
         $djs = $query->result();
 
-        $this->db->order_by('equipment', 'DESC');
-        $this->db->where('contact_id', $id);
-
-        $query = $this->db->get('dj_equipment');
+        $query = $this->db->query('SELECT  dje.id, dje.name 
+            FROM dj_contact_equipment djce
+            INNER JOIN dj_equipment dje
+            ON dje.id = djce.equipment_id
+            WHERE djce.contact_id = ' . $id);
         $equipment = $query->result();
 
-        $this->db->order_by('music', 'DESC');
-        $this->db->where('contact_id', $id);
+        $query = $this->db->query('SELECT  djm.id, djm.music
+            FROM dj_contact_music djcm
+            INNER JOIN dj_music djm
+            ON djm.id = djcm.music_id
+            WHERE djcm.contact_id = '. $id);
 
-        $query = $this->db->get('dj_music');
         $music = $query->result();
+        $this->load->model('add_equipment');
+        $equipmentList = $this->add_equipment->listEquipment();
+        
+        $this->load->model('add_music');
+        $musicList = $this->add_music->listMusic();
 
         $data = array(
             'djs' => $djs,
             'equipment' => $equipment,
-            'music' => $music
+            'music' => $music,
+            'equipmentList' => $equipmentList,
+            'musicList' => $musicList
         );
 
         $this->load->view('dj_name', $data);
@@ -161,6 +171,68 @@ class djs extends CI_Controller {
     public function remove($id = '') {
         $this->add_dj->removeUser($id);
         redirect('djs/success');
+    }
+
+    public function addEquipment() {
+        $this->db->limit(1);
+        $this->db->where('name', $this->input->post('dj-equipment'));
+        $query = $this->db->get('dj_equipment');
+        $equipment = $query->result();
+
+        $form_data = array(
+            'contact_id' => $this->input->post('dj-id'),
+            'equipment_id' => $equipment[0]->id
+        );
+                    
+        
+        if ($this->add_dj->addDjEquipment($form_data) == TRUE) {
+            redirect('djs/success');
+        } else {
+            echo 'An error occurred saving your information. Please try again later';
+        }
+    }
+
+    public function addMusic() {
+        $this->db->limit(1);
+        $this->db->where('music', $this->input->post('dj-music'));
+        $query = $this->db->get('dj_music');
+        $music = $query->result();
+
+        $form_data = array(
+            'contact_id' => $this->input->post('dj-id'),
+            'music_id' => $music[0]->id
+        );
+                    
+        
+        if ($this->add_dj->addDjMusic($form_data) == TRUE) {
+            redirect('djs/success');
+        } else {
+            echo 'An error occurred saving your information. Please try again later';
+        }
+    }
+
+    public function removeEquipment($contactId = null, $equipmentId = null) {
+        if (is_null($contactId) && is_null($equipmentId)) {
+            redirect('/');
+        } else {
+            $this->db->limit(1);
+            $this->db->where('contact_id', $contactId);
+            $this->db->where('equipment_id', $equipmentId);
+            $this->db->delete('dj_contact_equipment');
+            redirect('djs/success');
+        }
+    }
+
+    public function removeMusic($contactId = null, $musicId = null) {
+        if (is_null($contactId) && is_null($musicId)) {
+            redirect('/');
+        } else {
+            $this->db->limit(1);
+            $this->db->where('contact_id', $contactId);
+            $this->db->where('music_id', $musicId);
+            $this->db->delete('dj_contact_music');
+            redirect('djs/success');
+        }
     }
 
     function success() {

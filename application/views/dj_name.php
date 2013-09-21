@@ -63,7 +63,7 @@
                             foreach ($equipment as $key => $value) {
                                 echo '<tr>';
                                     echo '<td>' . $value->name . '</td>';
-                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'djs/removeEquipment/'.$djs[0]->id . '/' .$value->id.'">Delete</a></td>';
                                 echo '</tr>';
                             }
                         ?>
@@ -133,13 +133,14 @@
         <a href="#" class="btn btn-primary modal-submit-btn disabled">Submit</a>
     </div>
 </div>
+
 <div class="modal hide fade" id="music-modal">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Add Equipment</h3>
+        <h3>Add Music</h3>
     </div>
     <div class="modal-body">
-        <form action="<?php echo base_url(); ?>djs/addEquipment" method="POST">
+        <form action="<?php echo base_url(); ?>djs/addMusic" method="POST">
             <p>Search through current music list</p>
             <input type="text" name="dj-music" id="dj-music" data-items="4" data-source='[<?php echo implode(', ', $musicTypeahead); ?>]' placeholder="Music" data-provide="typeahead" autocomplete="off">
             <span class="error hide"></span>

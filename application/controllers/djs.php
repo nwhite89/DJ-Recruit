@@ -194,7 +194,7 @@ class djs extends CI_Controller {
 
     public function addMusic() {
         $this->db->limit(1);
-        $this->db->where('name', $this->input->post('dj-music'));
+        $this->db->where('music', $this->input->post('dj-music'));
         $query = $this->db->get('dj_music');
         $music = $query->result();
 
@@ -208,6 +208,30 @@ class djs extends CI_Controller {
             redirect('djs/success');
         } else {
             echo 'An error occurred saving your information. Please try again later';
+        }
+    }
+
+    public function removeEquipment($contactId = null, $equipmentId = null) {
+        if (is_null($contactId) && is_null($equipmentId)) {
+            redirect('/');
+        } else {
+            $this->db->limit(1);
+            $this->db->where('contact_id', $contactId);
+            $this->db->where('equipment_id', $equipmentId);
+            $this->db->delete('dj_contact_equipment');
+            redirect('djs/success');
+        }
+    }
+
+    public function removeMusic($contactId = null, $musicId = null) {
+        if (is_null($contactId) && is_null($musicId)) {
+            redirect('/');
+        } else {
+            $this->db->limit(1);
+            $this->db->where('contact_id', $contactId);
+            $this->db->where('music_id', $musicId);
+            $this->db->delete('dj_contact_music');
+            redirect('djs/success');
         }
     }
 

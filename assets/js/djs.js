@@ -36,6 +36,19 @@ $(function() {
         }
     });
 
+    $('#dj-music').on('change, keyup, blur', function(e) {
+        var value = $(this).val(),
+            sources = musicList,
+            modal = $(this).closest('.modal');
+
+
+        if ($.inArray(value, sources) == -1) {
+            $('.modal-submit-btn', modal).addClass('disabled');
+        } else {
+            $('.modal-submit-btn', modal).removeClass('disabled');
+        }
+    });
+
     $('.modal form').on('submit', function(e) {
         var modalSubmitBtn = $(this)
             .closest('.modal').find('.modal-submit-btn');

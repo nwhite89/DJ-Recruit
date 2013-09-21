@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 12, 2013 at 10:22 PM
+-- Generation Time: Sep 21, 2013 at 03:35 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `dj_contacts`
 --
 
-DROP TABLE IF EXISTS `dj_contacts`;
 CREATE TABLE IF NOT EXISTS `dj_contacts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -40,19 +39,77 @@ CREATE TABLE IF NOT EXISTS `dj_contacts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
+--
+-- Dumping data for table `dj_contacts`
+--
+
+INSERT INTO `dj_contacts` (`id`, `name`, `email`, `mobile`, `address_line1`, `address_line2`, `town`, `postcode`, `dob`) VALUES
+(11, 'Nick White', 'nickwhite@toxicd.co.uk', '447966399608', 'Flat 16 Farmstead Court', 'Melbourne Road', 'Wallington', 'SM1 4BL', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dj_contact_equipment`
+--
+
+CREATE TABLE IF NOT EXISTS `dj_contact_equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `equipment_id` int(11) NOT NULL,
+  `contact_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `dj_contact_equipment`
+--
+
+INSERT INTO `dj_contact_equipment` (`id`, `equipment_id`, `contact_id`) VALUES
+(1, 4, 11),
+(3, 6, 11),
+(4, 7, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dj_contact_music`
+--
+
+CREATE TABLE IF NOT EXISTS `dj_contact_music` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contact_id` int(11) NOT NULL,
+  `music_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `dj_contact_music`
+--
+
+INSERT INTO `dj_contact_music` (`id`, `contact_id`, `music_id`) VALUES
+(1, 11, 1),
+(2, 11, 2),
+(3, 11, 4);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `dj_equipment`
 --
 
-DROP TABLE IF EXISTS `dj_equipment`;
 CREATE TABLE IF NOT EXISTS `dj_equipment` (
+  `name` varchar(255) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `contact_id` int(11) NOT NULL,
-  `equipment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `dj_equipment`
+--
+
+INSERT INTO `dj_equipment` (`name`, `id`) VALUES
+('Smoke machine', 4),
+('Lights', 5),
+('Laptop', 7);
 
 -- --------------------------------------------------------
 
@@ -60,13 +117,20 @@ CREATE TABLE IF NOT EXISTS `dj_equipment` (
 -- Table structure for table `dj_music`
 --
 
-DROP TABLE IF EXISTS `dj_music`;
 CREATE TABLE IF NOT EXISTS `dj_music` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `contact_id` int(11) NOT NULL,
   `music` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `dj_music`
+--
+
+INSERT INTO `dj_music` (`id`, `music`) VALUES
+(1, 'Drum n Base'),
+(2, 'RnB'),
+(3, 'Techno');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

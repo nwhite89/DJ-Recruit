@@ -16,7 +16,7 @@
                 E-Mail Address:
             </dt>
             <dd>
-                <?php echo $djs[0]->email; ?>
+                <a href="mailto:<?php echo $djs[0]->email; ?>"><?php echo $djs[0]->email; ?></a>
             </dd>
             <dt>
                 Address:

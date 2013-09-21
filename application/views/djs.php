@@ -8,6 +8,8 @@
 						<th>Name</th>
 						<th>Age</th>
 						<th>Town</th>
+						<th class="hide">Equipment</th>
+						<th class="hide">Music</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -20,6 +22,20 @@
 							echo '<td><a href="'.base_url().'djs/views/'.$value->id.'">' . $value->name . '</td>';
 							echo '<td>' . $value->age . '</td>';
 							echo '<td>' . $value->town . '</td>';
+							echo '<td class="hide">';
+								$djEquipmentArr = array();
+								foreach ($value->equipment as $x => $v) {
+									array_push($djEquipmentArr, $v->name);
+								}
+								echo implode(', ', $djEquipmentArr);
+							echo '</td>';
+							echo '<td class="hide">';
+								$djMusicArr = array();
+								foreach ($value->music as $x => $v) {
+									array_push($djMusicArr, $v->music);
+								}
+								echo implode(', ', $djMusicArr);
+							echo '</td>';
 							?>
 							<td>
 								<div class="btn-group">

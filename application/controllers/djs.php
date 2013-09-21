@@ -37,6 +37,19 @@ class djs extends CI_Controller {
 
         foreach ($djs as $key => $value) {
             $djs[$key]->age = $this->add_dj->getDJAge($value->dob);
+            $query = $this->db->query('SELECT dje.name 
+                FROM dj_contact_equipment djce
+                INNER JOIN dj_equipment dje
+                ON dje.id = djce.equipment_id
+                WHERE djce.contact_id = ' . $value->id);
+            $djs[$key]->equipment = $query->result();
+
+            $query = $this->db->query('SELECT  djm.id, djm.music
+                FROM dj_contact_music djcm
+                INNER JOIN dj_music djm
+                ON djm.id = djcm.music_id
+                WHERE djcm.contact_id = '. $value->id);
+            $djs[$key]->music = $query->result();
         }
 
         $data = array(

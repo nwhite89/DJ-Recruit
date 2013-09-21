@@ -49,7 +49,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="equipment">
-                    <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>equipment/add/<?php echo $djs[0]->id; ?>">Add</a><br />
+                    <a href="#equipment-modal" role="button" class="btn btn-primary pull-right" data-toggle="modal">Add</a><br />
                     <table id="equipment-table" class="table list table-condensed table-hover table-striped" width="100%;">
                         <thead>
                             <tr>
@@ -62,8 +62,8 @@
                         <?php 
                             foreach ($equipment as $key => $value) {
                                 echo '<tr>';
-                                    echo '<td>' . $value->equipment . '</td>';
-                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'equipment/remove/'.$value->id.'">Delete</a></td>';
+                                    echo '<td>' . $value->name . '</td>';
+                                    echo '<td style="text-align:right;"><a class="btn btn-danger btn-mini dj-delete-check" href="'.base_url().'djs/removeEquipment/'.$djs[0]->id . '/' .$value->id.'">Delete</a></td>';
                                 echo '</tr>';
                             }
                         ?>
@@ -71,7 +71,7 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="music">
-                    <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>music/add/<?php echo $djs[0]->id; ?>">Add</a><br />
+                    <a href="#music-modal" role="button" class="btn btn-primary pull-right" data-toggle="modal">Add</a><br />
                     <table id="music-table" class="table list table-condensed table-hover table-striped" width="100%;">
                         <thead>
                             <tr>
@@ -92,6 +92,63 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
+    </div>
+</div>
+<?php 
+    $equipmentTypeahead = array();
+    $equipmentListArr = array();
+    foreach ($equipmentList as $key => $value) {
+        $equipmentTypeahead[] = '"'.$value->name.'"';
+        $equipmentListArr[] = $value->name;
+    }
+
+    $musicTypeahead = array();
+    $musicListArr = array();
+    foreach ($musicList as $key => $value) {
+        $musicTypeahead[] = '"'.$value->music.'"';
+        $musicListArr[] = $value->music;
+    }
+    echo '<script>';
+    echo 'var equipmentList = ' . json_encode($equipmentListArr) . ';' ;
+    echo 'var musicList = ' . json_encode($musicListArr) . ';' ;
+    echo '</script>';
+?>
+<div class="modal hide fade" id="equipment-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Add Equipment</h3>
+    </div>
+    <div class="modal-body">
+        <form action="<?php echo base_url(); ?>djs/addEquipment" method="POST">
+            <p>Search through current equipment list</p>
+            <input type="text" name="dj-equipment" id="dj-equipment" data-items="4" data-source='[<?php echo implode(', ', $equipmentTypeahead); ?>]' placeholder="Equipment" data-provide="typeahead" autocomplete="off">
+            <span class="error hide"></span>
+            <input type="hidden" name="dj-id" id="dj" value="<?php echo $djs[0]->id; ?>">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a href="#" class="btn btn-primary modal-submit-btn disabled">Submit</a>
+    </div>
+</div>
+
+<div class="modal hide fade" id="music-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Add Music</h3>
+    </div>
+    <div class="modal-body">
+        <form action="<?php echo base_url(); ?>djs/addMusic" method="POST">
+            <p>Search through current music list</p>
+            <input type="text" name="dj-music" id="dj-music" data-items="4" data-source='[<?php echo implode(', ', $musicTypeahead); ?>]' placeholder="Music" data-provide="typeahead" autocomplete="off">
+            <span class="error hide"></span>
+            <input type="hidden" name="dj-id" id="dj" value="<?php echo $djs[0]->id; ?>">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a href="#" class="btn btn-primary modal-submit-btn disabled">Submit</a>
     </div>
 </div>

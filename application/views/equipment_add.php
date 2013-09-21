@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h2>Add equipment to <?php echo $djs[0]->name; ?></h2>
+            <h2>Add equipment</h2>
             <?php // Change the css classes to suit your needs    
 
             $attributes = array('class' => 'form-horizontal', 'id' => '');
-            echo form_open('equipment/add/' . $djId, $attributes); ?>
+            echo form_open('equipment/add/', $attributes); ?>
 
             <div class="control-group<?php echo (form_error('equipment')?' error':'')?>">
                 <label class="control-label" for="equipment">Equipment <span class="required">*</span></label>

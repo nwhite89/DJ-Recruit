@@ -2,7 +2,7 @@
 
 class add_equipment extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -16,7 +16,7 @@ class add_equipment extends CI_Model {
     * @return Bool - TRUE or FALSE
     */
 
-    function SaveForm($form_data) {
+    public function SaveForm($form_data) {
         $this->db->insert('dj_equipment', $form_data);
 
         if ($this->db->affected_rows() == '1') {
@@ -26,9 +26,14 @@ class add_equipment extends CI_Model {
         return FALSE;
     }
 
-    function removeEquipment($id) {        
+    public function removeEquipment($id) {        
         $this->db->where('id', $id);
         $this->db->delete('dj_equipment');
+    }
+
+    public function listEquipment() {
+        $query = $this->db->get('dj_equipment');
+        return $query->result();
     }
 
 }

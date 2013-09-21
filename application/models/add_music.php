@@ -31,5 +31,10 @@ class add_music extends CI_Model {
         $this->db->delete('dj_music');
     }
 
+    public function listMusic() {
+        $query = $this->db->get('dj_music');
+        return $query->result();
+    }
+
 }
 ?>

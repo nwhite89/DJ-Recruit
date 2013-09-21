@@ -37,15 +37,35 @@ class add_dj extends CI_Model {
         return FALSE;
     }
 
+    public function addDjEquipment($form_data) {
+        $this->db->insert('dj_contact_equipment', $form_data);
+
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    public function addDjMusic($form_data) {
+        $this->db->insert('dj_contact_music', $form_data);
+
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
     function removeUser($id) {
         $this->db->where('id', $id);
         $this->db->delete('dj_contacts');
         
         $this->db->where('contact_id', $id);
-        $this->db->delete('dj_equipment');
+        $this->db->delete('dj_contact_equipment');
 
         $this->db->where('contact_id', $id);
-        $this->db->delete('dj_music');
+        $this->db->delete('dj_contact_music');
     }
 }
 ?>
